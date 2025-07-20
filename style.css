@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1, h2, h3 {
+    color: #0d47a1;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input, select, textarea, button {
+    padding: 8px;
+    margin-top: 4px;
+    font-size: 1rem;
+  }
+  
+  button {
+    margin-top: 20px;
+    background-color: #0d47a1;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #1565c0;
+  }
+  
+  .conditional {
+    display: none;
+    margin-top: 20px;
+    padding: 10px;
+    border-left: 3px solid #1976d2;
+    background-color: #f1f8ff;
+  }
+  

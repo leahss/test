@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>SLB Customer Satisfaction Survey</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    
+<body>
+    <h1>SLB Services Customer Satisfaction Survey</h1>
+    <form id="survey-form">
+        <h2>Personal Information</h2>
+        <label>Company Name: <input type="text" name="companyName" required></label>
+        <label>Contact Name: <input type="text" name="contactName" required></label>
+        <label>Contact Email: <input type="email" name="contactEmail" required></label>
+    
+        <h2>Project/Order Information</h2>
+        <label>PO Reference: <input type="text" name="poReference"></label>
+        <label>End Destination (Country): <input type="text" name="endDestination"></label>
+        <label>End User: <input type="text" name="endUser"></label>
+        <label>End Facility: <input type="text" name="endFacility"></label>
+    
+        <label>Project Type:
+          <select name="projectType" id="projectType" required>
+            <option value="">-- Select --</option>
+            <option value="Spare Parts">Spare Parts</option>
+            <option value="Field Service">Field Service</option>
+            <option value="Large Project">Large Project</option>
+          </select>
+        </label>
+    
+        <label>Overall Rating (1-10): <input type="number" name="overallRating" min="1" max="10" required></label>
+        <label>Would you use SLB again?
+          <select name="wouldUseAgain">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </label>
+    
+        <!-- Spare Parts Section -->
+        <div id="sparePartsSection" class="conditional">
+          <h3>Spare Parts</h3>
+          <label>Description: <input type="text" name="sparePartsDescription"></label>
+          <label>Timely Quotation (1–10): <input type="number" name="sparePartsQuotationTime" min="1" max="10"></label>
+          <label>Quotation Quality (1–10): <input type="number" name="sparePartsQuotationQuality" min="1" max="10"></label>
+          <label>Delivery Timeliness (1–10): <input type="number" name="sparePartsDelivery" min="1" max="10"></label>
+          <label>Parts Quality (1–10): <input type="number" name="sparePartsQuality" min="1" max="10"></label>
+          <label>Comments: <textarea name="sparePartsComments"></textarea></label>
+        </div>
+    
+        <!-- Field Service Section -->
+        <div id="fieldServiceSection" class="conditional">
+          <h3>Field Service</h3>
+          <label>Equipment Description: <input type="text" name="fieldServiceEquipment"></label>
+          <label>Support Description: <input type="text" name="fieldServiceSupport"></label>
+          <label>Timely Quotation (1–10): <input type="number" name="fieldServiceQuotationTime" min="1" max="10"></label>
+          <label>Quotation Quality (1–10): <input type="number" name="fieldServiceQuotationQuality" min="1" max="10"></label>
+          <label>Field Support Quality (1–10): <input type="number" name="fieldServiceQuality" min="1" max="10"></label>
+          <label>Personnel Expertise (1–10): <input type="number" name="fieldServiceExpertise" min="1" max="10"></label>
+          <label>Comments: <textarea name="fieldServiceComments"></textarea></label>
+        </div>
+    
+        <!-- Large Project Section -->
+        <div id="largeProjectSection" class="conditional">
+          <h3>Large Project</h3>
+          <label>Project Description: <input type="text" name="largeProjectDescription"></label>
+          <label>Timely Proposal (1–10): <input type="number" name="largeProjectProposalTime" min="1" max="10"></label>
+          <label>Proposal Quality (1–10): <input type="number" name="largeProjectProposalQuality" min="1" max="10"></label>
+          <label>Execution Timeliness (1–10): <input type="number" name="largeProjectExecutionTime" min="1" max="10"></label>
+          <label>Execution Quality (1–10): <input type="number" name="largeProjectExecutionQuality" min="1" max="10"></label>
+          <label>Comments: <textarea name="largeProjectComments"></textarea></label>
+        </div>
+    
+        <button type="submit">Submit</button>
+      </form>
+    
+      <script src="script.js"></script>
+</body>
+</html>
