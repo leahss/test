@@ -14,58 +14,65 @@ document.getElementById("projectType").addEventListener("change", function () {
   // Handle form submission
   //https://script.google.com/macros/s/AKfycbw4q3CTd62OVXN6JguBhLvhYvTykEDW_6GhTTufnAsM4qqnVage31sawKuyDjqhUYi4/exec
 
-  document.getElementById("feedback-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-  
-    const data = {
-      companyName: document.getElementById("companyName").value,
-      contactName: document.getElementById("contactName").value,
-      contactEmail: document.getElementById("contactEmail").value,
-      poReference: document.getElementById("poReference").value,
-      endDestination: document.getElementById("endDestination").value,
-      endUser: document.getElementById("endUser").value,
-      endFacility: document.getElementById("endFacility").value,
-      projectType: document.getElementById("projectType").value,
-      overallRating: document.getElementById("overallRating").value,
-      wouldUseAgain: document.getElementById("wouldUseAgain").value,
-      sparePartsDescription: document.getElementById("sparePartsDescription").value,
-      sparePartsQuotationTime: document.getElementById("sparePartsQuotationTime").value,
-      sparePartsQuotationQuality: document.getElementById("sparePartsQuotationQuality").value,
-      sparePartsDelivery: document.getElementById("sparePartsDelivery").value,
-      sparePartsQuality: document.getElementById("sparePartsQuality").value,
-      sparePartsComments: document.getElementById("sparePartsComments").value,
-      fieldServiceEquipment: document.getElementById("fieldServiceEquipment").value,
-      fieldServiceSupport: document.getElementById("fieldServiceSupport").value,
-      fieldServiceQuotationTime: document.getElementById("fieldServiceQuotationTime").value,
-      fieldServiceQuotationQuality: document.getElementById("fieldServiceQuotationQuality").value,
-      fieldServiceQuality: document.getElementById("fieldServiceQuality").value,
-      fieldServiceExpertise: document.getElementById("fieldServiceExpertise").value,
-      fieldServiceComments: document.getElementById("fieldServiceComments").value,
-      largeProjectDescription: document.getElementById("largeProjectDescription").value,
-      largeProjectProposalTime: document.getElementById("largeProjectProposalTime").value,
-      largeProjectProposalQuality: document.getElementById("largeProjectProposalQuality").value,
-      largeProjectExecutionTime: document.getElementById("largeProjectExecutionTime").value,
-      largeProjectExecutionQuality: document.getElementById("largeProjectExecutionQuality").value,
-      largeProjectComments: document.getElementById("largeProjectComments").value
-    };
-  
-    fetch("https://script.google.com/macros/s/AKfycbx_zCJ2eWFBkTRNmahNFbyvz5WZQDQWXsBFYD708JG_BCfYcFfH93K9vcBJq7YvGUQb/exec", {
+  document.getElementById("survey-form").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const form = e.target;
+
+  const data = {
+    companyName: form.companyName.value || "",
+    contactName: form.contactName.value || "",
+    contactEmail: form.contactEmail.value || "",
+    poReference: form.poReference.value || "",
+    endDestination: form.endDestination.value || "",
+    endUser: form.endUser.value || "",
+    endFacility: form.endFacility.value || "",
+    projectType: form.projectType.value || "",
+    overallRating: form.overallRating.value || "",
+    wouldUseAgain: form.wouldUseAgain.value || "",
+
+    sparePartsDescription: form.sparePartsDescription?.value || "",
+    sparePartsQuotationTime: form.sparePartsQuotationTime?.value || "",
+    sparePartsQuotationQuality: form.sparePartsQuotationQuality?.value || "",
+    sparePartsDelivery: form.sparePartsDelivery?.value || "",
+    sparePartsQuality: form.sparePartsQuality?.value || "",
+    sparePartsComments: form.sparePartsComments?.value || "",
+
+    fieldServiceEquipment: form.fieldServiceEquipment?.value || "",
+    fieldServiceSupport: form.fieldServiceSupport?.value || "",
+    fieldServiceQuotationTime: form.fieldServiceQuotationTime?.value || "",
+    fieldServiceQuotationQuality: form.fieldServiceQuotationQuality?.value || "",
+    fieldServiceQuality: form.fieldServiceQuality?.value || "",
+    fieldServiceExpertise: form.fieldServiceExpertise?.value || "",
+    fieldServiceComments: form.fieldServiceComments?.value || "",
+
+    largeProjectDescription: form.largeProjectDescription?.value || "",
+    largeProjectProposalTime: form.largeProjectProposalTime?.value || "",
+    largeProjectProposalQuality: form.largeProjectProposalQuality?.value || "",
+    largeProjectExecutionTime: form.largeProjectExecutionTime?.value || "",
+    largeProjectExecutionQuality: form.largeProjectExecutionQuality?.value || "",
+    largeProjectComments: form.largeProjectComments?.value || ""
+  };
+
+  try {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbx_zCJ2eWFBkTRNmahNFbyvz5WZQDQWXsBFYD708JG_BCfYcFfH93K9vcBJq7YvGUQb/exec", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log("Server Response:", result);
-        alert("Feedback submitted successfully!");
-      })
-      .catch((err) => {
-        console.error("Fetch error details:", err);
-        alert("There was an error submitting the form.");
-      });
-  });
+      mode: "no-cors" // use this if the script isn't allowing CORS
+    });
+
+    console.log("Submitted!", response);
+    alert("Form submitted successfully!");
+
+  } catch (err) {
+    console.error("Fetch error:", err);
+    alert("Submission failed: " + err.message);
+  }
+});
+
   
 
 
