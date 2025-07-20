@@ -22,19 +22,21 @@ document.getElementById("projectType").addEventListener("change", function () {
 
     const formData = new FormData(form);
     const data = {};
-
     formData.forEach((value, key) => {
-      data[key] = value || "";
+      data[key] = value;
     });
 
     try {
-      const response = await fetch("https://script.google.com/macros/s/PASTE-YOUR-URL/exec", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbx_zCJ2eWFBkTRNmahNFbyvz5WZQDQWXsBFYD708JG_BCfYcFfH93K9vcBJq7YvGUQb/exec", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(data)
       });
+
+      const result = await response.json();
+      console.log(result);
 
       alert("Form submitted successfully!");
       form.reset();
@@ -44,4 +46,3 @@ document.getElementById("projectType").addEventListener("change", function () {
     }
   });
 });
-
