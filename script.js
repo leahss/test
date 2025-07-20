@@ -18,22 +18,14 @@ document.getElementById("projectType").addEventListener("change", function () {
   const form = document.getElementById("survey-form");
 
   form.addEventListener("submit", async function (e) {
-    e.preventDefault(); // 🚫 Prevent form from refreshing page
+    e.preventDefault();
 
     const formData = new FormData(form);
-    const data = {};
-
-    formData.forEach((value, key) => {
-      data[key] = value || "";
-    });
 
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbx_zCJ2eWFBkTRNmahNFbyvz5WZQDQWXsBFYD708JG_BCfYcFfH93K9vcBJq7YvGUQb/exec", {
+      const response = await fetch(form.action, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
+        body: formData, // no headers needed
       });
 
       if (!response.ok) throw new Error("Response not OK");
@@ -46,3 +38,4 @@ document.getElementById("projectType").addEventListener("change", function () {
     }
   });
 });
+
