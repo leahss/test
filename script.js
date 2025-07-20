@@ -21,14 +21,20 @@ document.getElementById("projectType").addEventListener("change", function () {
     e.preventDefault();
 
     const formData = new FormData(form);
+    const data = {};
+
+    formData.forEach((value, key) => {
+      data[key] = value || "";
+    });
 
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbx_zCJ2eWFBkTRNmahNFbyvz5WZQDQWXsBFYD708JG_BCfYcFfH93K9vcBJq7YvGUQb/exec", {
+      const response = await fetch("https://script.google.com/macros/s/PASTE-YOUR-URL/exec", {
         method: "POST",
-        body: formData, // no headers needed
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
       });
-
-      if (!response.ok) throw new Error("Response not OK");
 
       alert("Form submitted successfully!");
       form.reset();
