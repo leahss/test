@@ -11,35 +11,31 @@ document.getElementById("projectType").addEventListener("change", function () {
   }
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("survey-form");
+document.getElementById("survey-form").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
+  const formData = new FormData(e.target);
+  const data = {};
+  formData.forEach((value, key) => {
+    data[key] = value;
+  });
 
-    const formData = new FormData(form);
-    const data = {};
-    formData.forEach((value, key) => {
-      data[key] = value;
-    });
-
-    try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbx_zCJ2eWFBkTRNmahNFbyvz5WZQDQWXsBFYD708JG_BCfYcFfH93K9vcBJq7YvGUQb/exec", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      });
-
-      const result = await response.json();
-      console.log(result);
-
-      alert("Form submitted successfully!");
-      form.reset();
-    } catch (err) {
-      console.error("Error:", err);
-      alert("There was an error submitting the form.");
+  fetch("https://script.google.com/macros/s/AKfycbx_zCJ2eWFBkTRNmahNFbyvz5WZQDQWXsBFYD708JG_BCfYcFfH93K9vcBJq7YvGUQb/exec", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
     }
+  })
+  .then(res => res.json())
+  .then(res => {
+    if (res.result === "success") {
+      alert("Thank you for your feedback!");
+    } else {
+      alert("Error: " + res.message);
+    }
+  })
+  .catch(err => {
+    alert("Request failed: " + err);
   });
 });
