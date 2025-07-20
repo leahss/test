@@ -61,7 +61,7 @@ document.getElementById("projectType").addEventListener("change", function () {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(data),
-      mode: "no-cors" // use this if the script isn't allowing CORS
+      //mode: "no-cors" // use this if the script isn't allowing CORS
     });
 
     console.log("Submitted!", response);
