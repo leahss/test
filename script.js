@@ -23,7 +23,7 @@ document.getElementById("projectType").addEventListener("change", function () {
     const formData = new FormData(form);
 
     try {
-      const response = await fetch(form.action, {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbx_zCJ2eWFBkTRNmahNFbyvz5WZQDQWXsBFYD708JG_BCfYcFfH93K9vcBJq7YvGUQb/exec", {
         method: "POST",
         body: formData, // no headers needed
       });
